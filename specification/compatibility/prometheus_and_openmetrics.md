@@ -773,13 +773,13 @@ the collector Prometheus exporters, the `service.name` and `service.namespace`
 attributes MUST be combined as `<service.namespace>/<service.name>`, or
 `<service.name>` if namespace is empty, to form the `job` metric label.  The
 `service.instance.id` attribute, if present, MUST be converted to the
-`instance` label; otherwise, `instance` should be added with an empty value.
+`instance` label; otherwise, `instance` SHOULD be added with an empty value.
 
 All resource attributes SHOULD be converted to a
 [target](https://github.com/prometheus/OpenMetrics/blob/v1.0.0/specification/OpenMetrics.md#supporting-target-metadata-in-both-push-based-and-pull-based-systems)
 info metric, or MUST be dropped. The `target` metric is an info-typed metric
 whose labels MUST include the resource attributes, and MUST NOT include any
-other labels other than `job` and `instance`.  There MUST be at most one
+other labels except `job` and `instance`.  There MUST be at most one
 `target` info metric exported for each unique combination of `job` and `instance`.
 
 If info-typed metric families are not yet supported by the language Prometheus client library, a gauge-typed metric family named `target_info` with a constant value of 1 MUST be used instead.
